@@ -2,7 +2,10 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using UnityEngine;
-
+// THIS IS A CHANGE
+// CONFLICT
+// CONFLICT1
+// CONFLICT2
 public class SafeTelemetryQueue : ITelemetryQueue
 {
     private ConcurrentQueue<TelemetryData> telemetrySafeQueue;
