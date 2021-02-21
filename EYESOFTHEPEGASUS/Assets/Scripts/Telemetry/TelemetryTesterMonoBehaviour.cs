@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TelemetryTesterMonoBehaviour : MonoBehaviour
 {
+    public UIController uIController;
     private TelemetryDistributor TelemetryDistributor;
     private TelemetryRequester TelemetryRequester;
     // Start is called before the first frame update
@@ -29,6 +30,7 @@ public class TelemetryTesterMonoBehaviour : MonoBehaviour
 
     private void PrintTelemetryData(object sender, TelemetryData data)
     {
+        uIController.UpdateTexts(data);
         Debug.Log(data);
     }
     
