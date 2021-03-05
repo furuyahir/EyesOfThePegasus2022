@@ -2,6 +2,7 @@
 
 public struct TelemetryData
 {
+    private const string V = "";
     public string _id;
     public double time;
     public string timer;
@@ -31,10 +32,10 @@ public struct TelemetryData
 
     public TelemetryData(string json)
     {
-        _id = null;
+        _id = "";
         time = 0;
-        timer = null;
-        started_at = null;
+        timer = "";
+        started_at = "";
         heart_bpm = 0;
         p_suit = 0;
         t_sub = 0;
@@ -44,7 +45,7 @@ public struct TelemetryData
         batteryPercent = 0;
         battery_out = 0;
         cap_battery = 0;
-        t_battery = null;
+        t_battery = "";
         p_h2o_g = 0;
         p_h2o_l = 0;
         p_sop = 0;
@@ -53,9 +54,9 @@ public struct TelemetryData
         t_oxygenSec = 0;
         ox_primary = 0;
         ox_secondary = 0;
-        t_oxygen = null;
+        t_oxygen = "";
         cap_water = 0;
-        t_water = null;
+        t_water = "";
         __v = 0;
     }
 

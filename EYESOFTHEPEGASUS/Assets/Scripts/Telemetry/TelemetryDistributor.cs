@@ -39,6 +39,7 @@ public class TelemetryDistributor : MonoBehaviour, ITelemetryDistributor
     {
         if (!initialized)
         {
+            Debug.Log("not initialized");
             return;
         }
 
