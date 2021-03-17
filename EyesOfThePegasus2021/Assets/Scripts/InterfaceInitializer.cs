@@ -26,7 +26,7 @@ public class InterfaceInitializer : MonoBehaviour
 
     void Awake()
     {
-        TelemetryURL = PlayerPrefs.GetString("TelemetryURL", null);
+        TelemetryURL = PlayerPrefs.GetString(TelemetryRequester.URLPlayerPrefsKey, null);
     }
 
     // Start is called before the first frame update

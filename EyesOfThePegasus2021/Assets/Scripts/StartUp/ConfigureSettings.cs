@@ -1,35 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Microsoft.MixedReality.Toolkit.Experimental.UI;
 
-public class ConfigureSettins : MonoBehaviour
+public class ConfigureSettings : MonoBehaviour
 {
-    UnityEngine.TouchScreenKeyboard keyboard;
-    public static string keyboardText = "";
+    MixedRealityKeyboard MixedRealityKeyboard;
 
     // Start is called before the first frame update
     void Start()
     {
-        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default, false, false, false, false);
+        MixedRealityKeyboard = gameObject.AddComponent<MixedRealityKeyboard>();
+        MixedRealityKeyboard.ShowKeyboard();
+        MixedRealityKeyboard.OnCommitText.AddListener(OnKeyboardCommit);
     }
 
-    
-
-    // Update is called once per frame
-    void Update()
+    private void OnKeyboardCommit()
     {
-        if (TouchScreenKeyboard.visible == false && keyboard != null)
-        {
-            if (keyboard.status == TouchScreenKeyboard.Status.Done)
-            {
-                keyboardText = keyboard.text;
-                keyboard = null;
-            }
-            if(!PlayerPrefs.HasKey("TelemetryURL"))
-            {
-                PlayerPrefs.SetString("TelemtryURL", keyboardText);
-            }
-            
-        }
+        PlayerPrefs.SetString(TelemetryRequester.URLPlayerPrefsKey, MixedRealityKeyboard.Text);
     }
+
 }

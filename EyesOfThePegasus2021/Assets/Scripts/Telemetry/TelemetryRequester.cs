@@ -12,13 +12,14 @@ public class TelemetryRequester : ITelemetryRequester
     private Timer timer;
     private event EventHandler<TelemetryData> telemetryDataReceivedEventHandler;
     private const string DEFAULT_URL = "http://localhost:3000";
+    public static readonly string URLPlayerPrefsKey = "TELEMETRY_URL";
     public string TelemetryURL { get; private set; }
 
     public TelemetryRequester(string url = null)
     {
         TelemetryURL = string.IsNullOrEmpty(url) ? DEFAULT_URL : url;
     }
-    
+
     public void SubscribeTelemetryReceivedListener(EventHandler<TelemetryData> listener)
     {
         telemetryDataReceivedEventHandler += listener;
@@ -28,28 +29,28 @@ public class TelemetryRequester : ITelemetryRequester
     {
         telemetryDataReceivedEventHandler -= listener;
     }
-    
+
     private async void GetTelemetry()
     {
         string responseString = await client.GetStringAsync($"{TelemetryURL}/api/simulation/state");
         TelemetryData newData = TelemetryData.FromJson(responseString);
         telemetryDataReceivedEventHandler?.Invoke(this, newData);
     }
-    
+
     public async void StartPolling()
     {
         await client.PostAsync($"{TelemetryURL}/api/simulation/start", new StringContent
             ("")).ConfigureAwait(true);
-        timer = new Timer(1000) {AutoReset = true};
+        timer = new Timer(1000) { AutoReset = true };
         timer.Elapsed += (sender, args) => GetTelemetry();
         timer.Start();
         Debug.Log("Polling Started");
     }
-    
+
     public async void StopPolling()
     {
         timer?.Stop();
-        await client.PostAsync($"{TelemetryURL}/api/simulation/stop", 
+        await client.PostAsync($"{TelemetryURL}/api/simulation/stop",
             new StringContent("")).ConfigureAwait(true);
         Debug.Log("Polling Stopped");
     }
