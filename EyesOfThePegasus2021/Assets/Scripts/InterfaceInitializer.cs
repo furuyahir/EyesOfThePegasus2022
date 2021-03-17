@@ -22,8 +22,6 @@ public class InterfaceInitializer : MonoBehaviour
     private TelemetryDistributor telemetryDistributor;
     private TelemetryRequester telemetryRequester;
 
-    private OpUICenter OpUICenter;
-
     private string TelemetryURL;
 
     void Awake()
@@ -34,16 +32,15 @@ public class InterfaceInitializer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        OpUICenter = new OpUICenter();
-
         VoiceInputManager voiceInputManager = Instantiate(VoiceInputManagerPrefab);
+
 
         TelemetryGameObject = new GameObject();
         telemetryDistributor = TelemetryGameObject.AddComponent<TelemetryDistributor>();
         telemetryRequester = new TelemetryRequester(TelemetryURL);
         telemetryDistributor.Init(telemetryRequester);
 
-        InstantiateUI(OpUICenter, voiceInputManager, telemetryRequester);
+        InstantiateUI(voiceInputManager, telemetryRequester);
     }
 
     [ContextMenu("Trigger Start")]
@@ -58,11 +55,21 @@ public class InterfaceInitializer : MonoBehaviour
         telemetryRequester.StopPolling();
     }
 
-    private void InstantiateUI(OpUICenter opUICenter, VoiceInputManager voiceInputManager,
+    private void InitializeVoiceCommands(VoiceInputManager voiceInputManager, OpUICenter opUICenter, TelemetryNearDisplay telemetryNearDisplay)
+    {
+        opUICenter.RegisterVoiceCommands(voiceInputManager);
+        telemetryNearDisplay.RegisterVoiceCommands(voiceInputManager);
+
+        voiceInputManager.EnableInput();
+    }
+
+    private void InstantiateUI(VoiceInputManager voiceInputManager,
         TelemetryRequester telemetryRequester)
     {
+        OpUICenter opUICenter = new OpUICenter();
         TelemetryNearDisplay telemetryNearDisplay = Instantiate(TelemetryNearDisplayPrefab);
         opUICenter.RegisterOpUI(telemetryNearDisplay, TelemetryNearDisplayName);
-        telemetryNearDisplay.InitVoiceCommands(voiceInputManager);
+
+        InitializeVoiceCommands(voiceInputManager, opUICenter, telemetryNearDisplay);
     }
 }

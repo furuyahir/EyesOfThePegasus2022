@@ -19,10 +19,14 @@ public class OpUICenter : IOpUICenter
     public bool RegisterOpUI(IOpUI newOpUI, string name)
     {
         bool returnValue = OpUIs.ContainsKey(name);
-        if (returnValue)
+        if (!returnValue)
         {
             OpUIs.Add(name, newOpUI);
             InvokeOpUIAddedEvent(name, newOpUI);
+        }
+        else
+        {
+            Debug.LogWarning($"Attempted to add OpUI Name: {name} that already exists.");
         }
 
         return returnValue;

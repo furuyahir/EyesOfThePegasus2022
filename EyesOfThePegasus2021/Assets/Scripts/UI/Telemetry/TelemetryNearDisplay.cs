@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class TelemetryNearDisplay : MonoBehaviour, IOpUI
 {
-
-    public void InitVoiceCommands(VoiceInputManager voiceInputManager)
+    public void RegisterVoiceCommands(VoiceInputManager voiceInputManager)
     {
         voiceInputManager.AddInputCommand(InputAction.Create("Show Telemetry", KeyCode.T,
             "Show Telemetry UI", () =>
@@ -18,7 +17,7 @@ public class TelemetryNearDisplay : MonoBehaviour, IOpUI
                 TurnOff();
             }));
     }
-    
+
 
     public void Remove()
     {
