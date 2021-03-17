@@ -24,6 +24,13 @@ public class InterfaceInitializer : MonoBehaviour
 
     private OpUICenter OpUICenter;
     
+    private string TelemetryURL;
+
+    void Awake()
+    {
+        TelemetryURL = PlayerPrefs.GetString("TelemetryURL", null);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +64,5 @@ public class InterfaceInitializer : MonoBehaviour
         TelemetryNearDisplay telemetryNearDisplay = Instantiate(TelemetryNearDisplayPrefab);
         opUICenter.RegisterOpUI(telemetryNearDisplay, TelemetryNearDisplayName);
         telemetryNearDisplay.InitVoiceCommands(voiceInputManager);
-
     }
 }
