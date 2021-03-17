@@ -9,7 +9,13 @@ public class OpUICenter : IOpUICenter
     private event EventHandler<OpUIEventArgs> OpUIRemoved;
     private Dictionary<string, IOpUI> OpUIs;
     private Dictionary<IOpUI, bool> OnTracker;
-    
+
+    public OpUICenter()
+    {
+        OpUIs = new Dictionary<string, IOpUI>();
+        OnTracker = new Dictionary<IOpUI, bool>();
+    }
+
     public bool RegisterOpUI(IOpUI newOpUI, string name)
     {
         bool returnValue = OpUIs.ContainsKey(name);
@@ -22,11 +28,26 @@ public class OpUICenter : IOpUICenter
         return returnValue;
     }
 
+    public void RegisterVoiceCommands(VoiceInputManager voiceInputManager)
+    {
+        voiceInputManager.AddInputCommand(InputAction.Create("Go Dark", KeyCode.Alpha0,
+        "Turns off all UI elements", () =>
+        {
+            TurnOffAll();
+        }));
+
+        voiceInputManager.AddInputCommand(InputAction.Create("Restore", KeyCode.Alpha1,
+        "Restores UI element status", () =>
+        {
+            Restore();
+        }));
+    }
+
     private void InvokeOpUIAddedEvent(string nameOfAddedOpUI, IOpUI addedOpUI)
     {
         OpUIAdded?.Invoke(this, new OpUIEventArgs(addedOpUI, nameOfAddedOpUI));
     }
-    
+
     public bool RemoveOpUI(string name)
     {
         bool returnValue = OpUIs.ContainsKey(name);
@@ -39,7 +60,7 @@ public class OpUICenter : IOpUICenter
 
         return returnValue;
     }
-    
+
     private void InvokeOpUIRemovedEvent(string nameOfRemovedOpUI)
     {
         OpUIAdded?.Invoke(this, new OpUIEventArgs(null, nameOfRemovedOpUI));
