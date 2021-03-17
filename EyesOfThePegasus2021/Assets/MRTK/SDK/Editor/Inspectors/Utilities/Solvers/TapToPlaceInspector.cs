@@ -115,7 +115,7 @@ namespace Microsoft.MixedReality.Toolkit.Utilities.Editor.Solvers
                     EditorGUILayout.PropertyField(moveLerpTimeProperty);
                     EditorGUILayout.PropertyField(rotateLerpTimeProperty);
                     EditorGUILayout.PropertyField(scaleLerpTimeProperty);
-                    EditorGUILayout.PropertyField(maintainScaleProperty);
+                   // EditorGUILayout.PropertyField(maintainScaleProperty);
                     EditorGUILayout.PropertyField(smoothingProperty);
                     EditorGUILayout.PropertyField(lifetimeProperty);
                     EditorGUILayout.PropertyField(magneticSurfaces, true);

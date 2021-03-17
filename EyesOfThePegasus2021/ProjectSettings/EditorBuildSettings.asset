@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/SpatialTest.unity
+    guid: 5bc8d7e23332b674bab79970924809cf
   m_configObjects: {}

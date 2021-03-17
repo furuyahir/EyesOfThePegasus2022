@@ -7,8 +7,12 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityPhysics = UnityEngine.Physics;
 
+
+
 namespace Microsoft.MixedReality.Toolkit.Utilities.Solvers
 {
+
+    [System.Serializable]
     /// <summary>
     /// Tap to place is a far interaction component used to place objects on a surface.
     /// </summary>
@@ -144,6 +148,7 @@ namespace Microsoft.MixedReality.Toolkit.Utilities.Solvers
             get => magneticSurfaces;
             set => magneticSurfaces = value;
         }
+        
 
         [SerializeField]
         [Tooltip("If true and in the Unity Editor, the normal of the raycast hit will be drawn in yellow.")]
