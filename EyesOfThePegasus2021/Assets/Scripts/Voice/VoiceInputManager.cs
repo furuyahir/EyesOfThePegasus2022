@@ -116,7 +116,10 @@ public class InputAction
 public class VoiceInputManager : MonoBehaviour
 {
     #region Member Variables
-    private bool isEnabled;
+
+    public bool isEnabled;
+    public AudioSource AudioSource;
+    public AudioClip ConfirmationSoundClip;
     private KeywordRecognizer keywordRecognizer;
     private Dictionary<KeyCode, InputAction> keyMap = new Dictionary<KeyCode, InputAction>();
     private Dictionary<string, InputAction> speechMap = new Dictionary<string, InputAction>();
@@ -150,18 +153,12 @@ public class VoiceInputManager : MonoBehaviour
     /// <summary>
     /// Ads default command used in all scenes.
     /// </summary>
-    private void AddDefaultCommands()
-    {
-        inputActions.Add(InputAction.Create("Toggle Scene Objects", KeyCode.Alpha1, "Show / hide processed scene objects", () =>
-        {
-
-            
-        }));
-
-    }
-
-    #endregion // Internal Methods
-
+    // private void AddDefaultCommands()
+    // {
+    //     inputActions.Add(InputAction.Create("Toggle Scene Objects", KeyCode.Alpha1, 
+    //         "Show / hide processed scene objects", () => { }));
+    // }
+    
     private void OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {
         // Try to map from phrase to action
@@ -169,16 +166,21 @@ public class VoiceInputManager : MonoBehaviour
         if (speechMap.TryGetValue(args.text, out action))
         {
             // Mapped action found, notify
-            Debug.Log("SUInputManager.OnPhraseRecognized: Phrase '" + args.text + "'recognized");
+            Debug.Log("Phrase ' " + args.text + " 'recognized");
             action.Handler.Invoke();
+            PlaySound(ConfirmationSoundClip);
             CommandRecognized?.Invoke();
         }
     }
 
-
+    private void PlaySound(AudioClip sound)
+    {
+        AudioSource.PlayOneShot(sound);
+    }
+    
+    #endregion // Internal Methods
 
     #region Public Methods
-
     public void AddInputCommand(InputAction inputAction)
     {
         inputActions.Add(inputAction);
@@ -247,7 +249,6 @@ public class VoiceInputManager : MonoBehaviour
     /// Gets or sets the list of inputs and their respective actions.
     /// </summary>
     public List<InputAction> InputActions { get => inputActions; set => inputActions = value; }
-
 
     /// <summary>
     /// Gets or sets a value that indicates whether or not to include default commands.

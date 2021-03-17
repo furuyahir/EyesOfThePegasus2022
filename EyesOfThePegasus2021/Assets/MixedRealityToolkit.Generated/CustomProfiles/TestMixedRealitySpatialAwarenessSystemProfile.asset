@@ -20,4 +20,4 @@ MonoBehaviour:
     componentName: Windows Mixed Reality Spatial Mesh Observer
     priority: 0
     runtimePlatform: 8
-    observerProfile: {fileID: 11400000, guid: 60e57a38f0e2d434d82a9c6934dab9d8, type: 2}
+    observerProfile: {fileID: 11400000, guid: d09375501f693fd47b071acb8bb3d01f, type: 2}

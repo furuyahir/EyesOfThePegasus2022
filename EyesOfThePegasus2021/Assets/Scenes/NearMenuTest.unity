@@ -267,7 +267,6 @@ GameObject:
   - component: {fileID: 1217013040}
   - component: {fileID: 1217013039}
   - component: {fileID: 1217013038}
-  - component: {fileID: 1217013042}
   - component: {fileID: 1217013041}
   m_Layer: 0
   m_Name: DemoObject
@@ -288,6 +287,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f631b39fc9ff02d4480848dc887b3827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnabled: 0
+  AudioSource: {fileID: 1217013041}
+  ConfirmationSoundClip: {fileID: 8300000, guid: 4075162bd7e8d9b4387ba77aeb751a0d,
+    type: 3}
   useDefaultCommands: 1
   inputEnabled:
     m_PersistentCalls:
@@ -423,21 +426,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1217013042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1217013037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81955b8ac0f7b2c47b21710d6449fd2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  VoiceInputManager: {fileID: 1217013038}
-  AudioSource: {fileID: 1217013041}
-  ConfirmationSound: {fileID: 8300000, guid: 4075162bd7e8d9b4387ba77aeb751a0d, type: 3}
 --- !u!1 &1730862443
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,6 +694,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5397708955958451425, guid: 2755b0ab2a417ea45a5078e0e698b7ed,
+        type: 3}
+      propertyPath: useFixedVerticalPosition
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6314073211345392400, guid: 2755b0ab2a417ea45a5078e0e698b7ed,
         type: 3}
