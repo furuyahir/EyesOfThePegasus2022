@@ -22,7 +22,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-*/ 
+*/
 
 using System;
 using System.Collections;
@@ -76,13 +76,12 @@ public class InputAction
     /// <returns>
     /// The created input action.
     /// </returns>
-    static public InputAction Create(string phrase, KeyCode key, string description, UnityAction handler)
+    static public InputAction Create(string phrase, string description, UnityAction handler)
     {
         // Create th
         InputAction ia = new InputAction()
         {
             Phrase = phrase,
-            Key = key,
             Description = description,
         };
         ia.Handler.AddListener(handler);
@@ -139,7 +138,7 @@ public class VoiceInputManager : MonoBehaviour
     [Tooltip("Raised when input is disabled.")]
     [SerializeField]
     private UnityEvent inputDisabled = new UnityEvent();
-    
+
     [Tooltip("Raised when command recognized.")]
     [SerializeField]
     private UnityEvent commandRecognized = new UnityEvent();
@@ -158,7 +157,7 @@ public class VoiceInputManager : MonoBehaviour
     //     inputActions.Add(InputAction.Create("Toggle Scene Objects", KeyCode.Alpha1, 
     //         "Show / hide processed scene objects", () => { }));
     // }
-    
+
     private void OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {
         // Try to map from phrase to action
@@ -166,7 +165,7 @@ public class VoiceInputManager : MonoBehaviour
         if (speechMap.TryGetValue(args.text, out action))
         {
             // Mapped action found, notify
-            Debug.Log("Phrase ' " + args.text + " 'recognized");
+            Debug.Log("Phrase '" + args.text + "' recognized");
             action.Handler.Invoke();
             PlaySound(ConfirmationSoundClip);
             CommandRecognized?.Invoke();
@@ -177,7 +176,7 @@ public class VoiceInputManager : MonoBehaviour
     {
         AudioSource.PlayOneShot(sound);
     }
-    
+
     #endregion // Internal Methods
 
     #region Public Methods
@@ -185,7 +184,7 @@ public class VoiceInputManager : MonoBehaviour
     {
         inputActions.Add(inputAction);
     }
-    
+
     /// <summary>
     /// Starts listening for input
     /// </summary>
@@ -267,7 +266,7 @@ public class VoiceInputManager : MonoBehaviour
     /// Raised when input is disabled.
     /// </summary>
     public UnityEvent InputDisabled { get => inputDisabled; }
-    
+
     public UnityEvent CommandRecognized
     {
         get => commandRecognized;

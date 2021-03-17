@@ -130,7 +130,10 @@ namespace Microsoft.MixedReality.Toolkit.UI
             set => autoFollowTriggered = value;
         }
 
-
+        public bool Following
+        {
+            get => radialView.enabled;
+        }
         #region MonoBehaviour Implementation
 
         private void Awake()
@@ -166,11 +169,11 @@ namespace Microsoft.MixedReality.Toolkit.UI
         /// <summary>
         /// Toggles the current follow behavior of the solver.
         /// </summary>
-        public void ToggleFollowMeBehavior()
+        public void ToggleFollowMeBehavior(bool follow)
         {
             if (radialView != null)
             {
-                SetFollowMeBehavior(!radialView.enabled);
+                SetFollowMeBehavior(follow);
             }
         }
 
