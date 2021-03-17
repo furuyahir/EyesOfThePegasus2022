@@ -35,12 +35,12 @@ public class InterfaceInitializer : MonoBehaviour
         VoiceInputManager voiceInputManager = Instantiate(VoiceInputManagerPrefab);
 
 
-        TelemetryGameObject = new GameObject();
+        TelemetryGameObject = new GameObject("TelemetryDistributorGameObject");
         telemetryDistributor = TelemetryGameObject.AddComponent<TelemetryDistributor>();
         telemetryRequester = new TelemetryRequester(TelemetryURL);
         telemetryDistributor.Init(telemetryRequester);
 
-        InstantiateUI(voiceInputManager, telemetryRequester);
+        InstantiateUI(voiceInputManager, telemetryDistributor);
     }
 
     [ContextMenu("Trigger Start")]
@@ -64,11 +64,11 @@ public class InterfaceInitializer : MonoBehaviour
     }
 
     private void InstantiateUI(VoiceInputManager voiceInputManager,
-        TelemetryRequester telemetryRequester)
+        TelemetryDistributor telemetryDistributor)
     {
         OpUICenter opUICenter = new OpUICenter();
         TelemetryNearDisplay telemetryNearDisplay = Instantiate(TelemetryNearDisplayPrefab);
-        telemetryNearDisplay.Init();
+        telemetryNearDisplay.Init(telemetryDistributor);
         opUICenter.RegisterOpUI(telemetryNearDisplay, TelemetryNearDisplayName);
 
         InitializeVoiceCommands(voiceInputManager, opUICenter, telemetryNearDisplay);
