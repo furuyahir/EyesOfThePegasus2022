@@ -10,6 +10,12 @@ public class OpUICenter : IOpUICenter
     private Dictionary<string, IOpUI> OpUIs;
     private Dictionary<IOpUI, bool> OnTracker;
 
+    public OpUICenter()
+    {
+        OpUIs = new Dictionary<string, IOpUI>();
+        OnTracker = new Dictionary<IOpUI, bool>();
+    }
+
     public bool RegisterOpUI(IOpUI newOpUI, string name)
     {
         bool returnValue = OpUIs.ContainsKey(name);
