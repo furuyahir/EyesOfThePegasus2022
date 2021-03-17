@@ -34,13 +34,13 @@ public class OpUICenter : IOpUICenter
 
     public void RegisterVoiceCommands(VoiceInputManager voiceInputManager)
     {
-        voiceInputManager.AddInputCommand(InputAction.Create("Go Dark", KeyCode.Alpha0,
+        voiceInputManager.AddInputCommand(InputAction.Create("Go Dark",
         "Turns off all UI elements", () =>
         {
             TurnOffAll();
         }));
 
-        voiceInputManager.AddInputCommand(InputAction.Create("Restore", KeyCode.Alpha1,
+        voiceInputManager.AddInputCommand(InputAction.Create("Restore",
         "Restores UI element status", () =>
         {
             Restore();
