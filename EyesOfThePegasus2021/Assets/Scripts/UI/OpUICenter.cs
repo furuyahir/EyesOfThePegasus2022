@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpUICenter : IOpUICenter
+public class OpUICenter : IOpUICenter, IVoiceCommandable
 {
     private event EventHandler<OpUIEventArgs> OpUIAdded;
     private event EventHandler<OpUIEventArgs> OpUIRemoved;
@@ -32,7 +32,7 @@ public class OpUICenter : IOpUICenter
         return returnValue;
     }
 
-    public void RegisterVoiceCommands(VoiceInputManager voiceInputManager)
+    public void RegisterVoiceCommands(IVoiceInputManager voiceInputManager)
     {
         voiceInputManager.AddVoiceCommand(InputAction.Create("Go Dark",
         "Turns off all UI elements", () =>

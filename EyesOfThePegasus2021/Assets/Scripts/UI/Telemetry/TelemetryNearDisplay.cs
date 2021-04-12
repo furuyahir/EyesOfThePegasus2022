@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Microsoft.MixedReality.Toolkit.UI;
 
-public class TelemetryNearDisplay : MonoBehaviour, IOpUI
+public class TelemetryNearDisplay : MonoBehaviour, IOpUI, IVoiceCommandable
 {
     public FollowMeToggle FollowMeToggle;
 
-    public void RegisterVoiceCommands(VoiceInputManager voiceInputManager)
+    public void RegisterVoiceCommands(IVoiceInputManager voiceInputManager)
     {
         voiceInputManager.AddVoiceCommand(InputAction.Create("Show Telemetry",
             "Show Telemetry UI", () =>
