@@ -184,6 +184,7 @@ namespace Microsoft.MixedReality.Toolkit.UI.BoundsControl
                 handle.name = HandlePositionDescription + "_" + i.ToString();
                 handle.transform.position = HandlePositions[i];
                 handle.transform.parent = parent;
+                Debug.Log($"Name: {handle.name}");
 
                 Bounds midpointBounds = CreateVisual(i, handle);
                 float maxDim = VisualUtils.GetMaxComponent(midpointBounds.size);
