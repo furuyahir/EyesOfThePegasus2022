@@ -73,7 +73,7 @@ public class InterfaceInitializer : MonoBehaviour
         voiceCommandables.Add(opUICenter);
         
         TelemetryNearDisplay telemetryNearDisplay = Instantiate(TelemetryNearDisplayPrefab);
-        telemetryNearDisplay.Init();
+        telemetryNearDisplay.Init(telemetryDistributor);
         opUICenter.RegisterOpUI(telemetryNearDisplay, TelemetryNearDisplayName);
         voiceCommandables.Add(telemetryNearDisplay);
 
