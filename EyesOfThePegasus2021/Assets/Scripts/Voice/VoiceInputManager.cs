@@ -112,7 +112,7 @@ public class InputAction
     #endregion // Public Properties
 }
 
-public class VoiceInputManager : MonoBehaviour
+public class VoiceInputManager : MonoBehaviour, IVoiceInputManager
 {
     #region Member Variables
 
@@ -180,7 +180,7 @@ public class VoiceInputManager : MonoBehaviour
     #endregion // Internal Methods
 
     #region Public Methods
-    public void AddInputCommand(InputAction inputAction)
+    public void AddVoiceCommand(InputAction inputAction)
     {
         inputActions.Add(inputAction);
     }

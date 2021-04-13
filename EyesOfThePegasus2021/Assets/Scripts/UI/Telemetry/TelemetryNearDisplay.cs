@@ -4,7 +4,7 @@ using UnityEngine;
 using Microsoft.MixedReality.Toolkit.UI;
 using Microsoft.MixedReality.Toolkit.Utilities;
 
-public class TelemetryNearDisplay : MonoBehaviour, IOpUI
+public class TelemetryNearDisplay : MonoBehaviour, IOpUI, IVoiceCommandable
 {
     public FollowMeToggle FollowMeToggle;
     public GameObject BackPlate;
@@ -12,24 +12,24 @@ public class TelemetryNearDisplay : MonoBehaviour, IOpUI
     public GameObject ButtonToClone;
     public GridObjectCollection ButtonCollection;
 
-    public void RegisterVoiceCommands(VoiceInputManager voiceInputManager)
+    public void RegisterVoiceCommands(IVoiceInputManager voiceInputManager)
     {
-        voiceInputManager.AddInputCommand(InputAction.Create("Show Telemetry",
+        voiceInputManager.AddVoiceCommand(InputAction.Create("Show Telemetry",
             "Show Telemetry UI", () =>
             {
                 TurnOn();
             }));
-        voiceInputManager.AddInputCommand(InputAction.Create("Hide Telemetry",
+        voiceInputManager.AddVoiceCommand(InputAction.Create("Hide Telemetry",
             "Hide Telemetry UI", () =>
             {
                 TurnOff();
             }));
-        voiceInputManager.AddInputCommand(InputAction.Create("Follow Telemetry",
+        voiceInputManager.AddVoiceCommand(InputAction.Create("Follow Telemetry",
             "Turn on Telemetry UI following behavior", () =>
             {
                 FollowMeToggle.ToggleFollowMeBehavior(true);
             }));
-        voiceInputManager.AddInputCommand(InputAction.Create("Pin Telemetry",
+        voiceInputManager.AddVoiceCommand(InputAction.Create("Pin Telemetry",
             "Turn on Telemetry UI following behavior", () =>
             {
                 FollowMeToggle.ToggleFollowMeBehavior(false);
