@@ -9,6 +9,7 @@ public class InterfaceInitializer : MonoBehaviour
 
     private const string TelemetryNearDisplayName = "TelemetryNearDisplay";
     private const string TelemetrySonificationName = "TelemetrySonification";
+    private const string WIMName = "WIM";
 
     #endregion
 
@@ -90,6 +91,7 @@ public class InterfaceInitializer : MonoBehaviour
 
         WIM wim = Instantiate(WIMPrefab);
         voiceCommandables.Add(wim);
+        opUICenter.RegisterOpUI(wim, WIMName);
         
         InitializeVoiceCommands(voiceInputManager, voiceCommandables);
     }

@@ -40,6 +40,7 @@ public class TelemetryNearDisplay : MonoBehaviour, IOpUI, IVoiceCommandable
     {
         FollowMeToggle = GetComponent<FollowMeToggle>();
         telemetryDistributor.SubscribeNewTelemetryDataListener(OnNewTelemetryData);
+        FollowMeToggle.ToggleFollowMeBehavior(true);
     }
 
     private void ResizeBackplate()
